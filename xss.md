@@ -65,7 +65,7 @@ csrf=ZJVq5Yx7wlJB38HHaBivutfzYNqXEMfk&postId=9&comment=<code><script>alert(1)</s
 
 - comment không được encoded và chứa <script> → sẽ chạy khi tải trang -> Stored XSS.
 
-### Lab Reflected XSS via attribute injection in ?search (onmouseover)
+### Lab Reflected XSS into attribute with angle brackets HTML-encoded
 
 - URL
 
@@ -97,6 +97,7 @@ GET /?search=aaa"onmouseover="alert(1) HTTP/1.1
 
 <img width="849" height="577" alt="image" src="https://github.com/user-attachments/assets/f3479cab-c754-4d7a-9f80-a0ef91fff13a" />
 
-
+### Lab: Reflected XSS into attribute with angle brackets HTML-encoded
+<img width="1523" height="513" alt="image" src="https://github.com/user-attachments/assets/af55d88b-2fef-452a-afab-a6ae21eb08d2" />
 
 

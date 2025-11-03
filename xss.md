@@ -2,15 +2,7 @@
 ## Apprentice
 ### 1.Lab Reflected XSS into HTML context with nothing encoded
 
-- URL
-
-https://0a6700640377321d80b71c4000f600d9.web-security-academy.net/?search=a
-
-- Loại lỗ hổng
-
-Reflected Cross-Site Scripting
-
-- Mô tả chi tiết (Detailed description)
+- Mô tả
 
 Giá trị của tham số a được chèn trực tiếp vào nội dung HTML mà không filter/escape các ký tự đặc biệt. Do đó, kẻ tấn công có thể gửi một payload chứa thẻ <script> để thực thi JavaScript trong trình duyệt của nạn nhân khi nạn nhân mở URL chứa payload đó.
 
@@ -32,15 +24,7 @@ GET /?search=a HTTP/2 → GET /?search=<code><script>alert(1)</script></code> HT
 
 ### 2.Lab Stored XSS into HTML context with nothing encoded
 
--URL
-
-https://0a4500e203175ec9809608ed001100e3.web-security-academy.net/post/comment
-
-- Loại lỗ hổng
-
-Stored Cross-Site Scripting
-
-- Mô tả chi tiết
+- Mô tả
 
 Giá trị của trường comment và name được người dùng gửi qua form bình luận, được lưu lại trong cơ sở dữ liệu và có thể được render nguyên vẹn vào HTML trả về khi trang bài được tải mà không có bất kỳ filter/escape ký tự đặc biệt nào. Do đó kẻ tấn công có thể lưu một payload chứa thẻ <script> (ví dụ <script>alert(1)</script>) vào cơ sở dữ liệu; payload này sẽ được trình duyệt của mọi người truy cập trang bài parse và thực thi, gây ra Stored Cross-Site Scripting.
 
@@ -56,7 +40,6 @@ csrf=ZJVq5Yx7wlJB38HHaBivutfzYNqXEMfk&postId=9&comment=<code><script>alert(1)</s
 
 <img width="450" height="561" alt="image" src="https://github.com/user-attachments/assets/0329e4c4-a03e-4110-9372-d7499fd36759" />
 
-
 4. Send → mở lại trang bài → kiểm tra response:
 
 <img width="907" height="550" alt="image" src="https://github.com/user-attachments/assets/3703e6fb-74dd-46d0-bf43-b31b08759023" />
@@ -67,15 +50,7 @@ csrf=ZJVq5Yx7wlJB38HHaBivutfzYNqXEMfk&postId=9&comment=<code><script>alert(1)</s
 
 ### 3.Lab Reflected XSS into attribute with angle brackets HTML-encoded
 
-- URL
-
-https://0a8600e4033fc2f981fc2536009b0013.web-security-academy.net/?search=aaa
-
-- Loại lỗ hổng
-
-Reflected Cross-Site Scripting — attribute injection / attribute-breaking (event handler onmouseover).
-
-- Mô tả chi tiết (Detailed description)
+- Mô tả
 
 Giá trị tham số search được phản chiếu vào một thuộc tính HTML mà không escape dấu nháy. Payload chứa dấu nháy " để đóng attribute hiện tại và thêm thuộc tính sự kiện onmouseover="alert(1)". Khi textbox được người dùng di chuột vào, trình duyệt sẽ gọi handler và thực thi alert(1) → Reflected XSS
 
@@ -85,7 +60,7 @@ Giá trị tham số search được phản chiếu vào một thuộc tính HTM
 
 1. Bật Burp Suite, truy cập trang tìm kiếm để tạo request tới /search.
 
-2.  Bắt request bằng Proxy và send to Repeater.
+2. Bắt request bằng Proxy và send to Repeater.
 
 3. Trong Repeater, thay "onmouseover="alert(1) vào sau aaa:
 
@@ -99,4 +74,17 @@ GET /?search=aaa"onmouseover="alert(1) HTTP/1.1
 
 ### 4.DOM XSS in document.write sink using source location.search
 
+- Mô tả
+
+Bài lab sử dụng hàm document.write để ghi dữ liệu ra trang. Hàm document.write này được gọi với dữ liệu từ location.search, có thể kiểm soát bằng cách sử dụng URL của trang web.
+
+- POC
+
+1. Bắt request và xem response trả về khi search từ bất kỳ
+
+<img width="705" height="139" alt="image" src="https://github.com/user-attachments/assets/2635c93a-107d-4680-b752-9f69ecfc0261" />
+
+2. viết payload "> để đóng chuỗi đằng trước, và nối với <script>alert(1)</script>
+
+<img width="1060" height="524" alt="image" src="https://github.com/user-attachments/assets/38350cf4-7f8c-4ab5-9f1b-c3d3df224a19" />
 

@@ -1,4 +1,3 @@
-<img width="1327" height="627" alt="image" src="https://github.com/user-attachments/assets/c403b9e9-8fb3-428f-acf7-386098b8790d" /># Cross-site scripting
 ## Apprentice
 ### 1.Lab Reflected XSS into HTML context with nothing encoded
 
@@ -104,6 +103,6 @@ Bài lab sử dụng innerHTML, thay đổi nội dung HTML của một phần t
 
 Dữ liệu từ URL (search) được đưa thẳng vào innerHTML của phần tử DOM mà không escape, nên attacker có thể gửi HTML/JS trong search thì trình duyệt sẽ thực thi
 
-2. Truyền payload <img src=a onerror=alert(1) /> trực tiếp vào tham số search
+2. Truyền payload `<img src=a onerror=alert(1) />` trực tiếp vào tham số search
 
 <img width="1327" height="627" alt="image" src="https://github.com/user-attachments/assets/f61275dd-3a53-4d5a-ac89-d283861cd354" />

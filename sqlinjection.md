@@ -52,7 +52,7 @@ Bài lab có lỗ hổng SQL injection trong chức năng đăng nhập. Để h
 
 - Mô tả:
 
-Mục tiêu của bài lab: hiển thị chuỗi phiên bản cơ sở dữ liệu (database version string). Trên Oracle, mọi SELECT phải chỉ rõ bảng FROM. Nếu UNION SELECT không truy vấn từ bảng nào, cần thêm FROM <table>, Oracle có bảng tích hợp tên dual để dùng trong trường hợp này.
+Mục tiêu của bài lab: Hiển thị chuỗi phiên bản cơ sở dữ liệu (database version string). Trên Oracle, mọi SELECT phải chỉ rõ bảng FROM. Nếu UNION SELECT không truy vấn từ bảng nào, cần thêm FROM <table>, Oracle có bảng tích hợp tên dual để dùng trong trường hợp này.
 
 - POC:
 
@@ -97,4 +97,36 @@ response không lỗi (2 cột NULL hợp lệ).
 3. Send và quan sát response
 
 <img width="1873" height="687" alt="image" src="https://github.com/user-attachments/assets/768731c5-2669-4f7b-b620-18ae0a48cda2" />
+
+### SQL injection attack, listing the database contents on non-Oracle databases
+
+- Mô tả:
+
+Ứng dụng có chức năng đăng nhập và cơ sở dữ liệu chứa một bảng lưu trữ tên người dùng và mật khẩu. Cần xác định tên của bảng này và các cột chứa trong bảng, sau đó truy xuất nội dung của bảng để lấy tên người dùng và mật khẩu của tất cả người dùng và đăng nhập với tư cách administrator.
+
+- POC:
+
+1. Kiểm tra số cột
+
+/filter?category=Accessories'union all select NULL,NULL-- -
+
+<img width="1600" height="481" alt="image" src="https://github.com/user-attachments/assets/4a5f6763-cf8f-4bf1-8b3c-50ddb2aa045a" />
+
+response không lỗi (2 cột NULL hợp lệ).
+
+2. Liệt kê tên bảng (metadata)
+
+<img width="1169" height="853" alt="image" src="https://github.com/user-attachments/assets/e847237b-11c6-4f1b-aacb-9b61237b7b58" />
+
+3. Liệt kê cột của bảng users_ibdtik
+
+<img width="1109" height="746" alt="image" src="https://github.com/user-attachments/assets/7f98ec77-8e9a-4b56-9b16-7f7b1d1b5284" />
+
+4. Liệt kê cột của 2 bảng username_yiszda và password_qrxtez
+
+<img width="1138" height="801" alt="image" src="https://github.com/user-attachments/assets/9ad8b17e-5a89-4902-bae3-73b9f55dc129" />
+
+5. Đăng nhập vào tài khoản administrator
+
+<img width="944" height="519" alt="image" src="https://github.com/user-attachments/assets/372eb8e1-af6e-4332-81c7-b705ebfd9d3b" />
 

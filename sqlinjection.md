@@ -4,7 +4,7 @@
 
 Khi người dùng chọn một danh mục, ứng dụng sẽ thực hiện một truy vấn SQL:
 
-SELECT * FROM products WHERE category = 'Gifts' AND released = 1
+SELECT * FROM products WHERE category = 'Accessories' AND released = 1
 
 Khi nhấp vào các nút, kết quả sẽ được lọc theo danh mục:
 

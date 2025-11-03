@@ -1,4 +1,4 @@
-# Cross-site scripting
+<img width="1327" height="627" alt="image" src="https://github.com/user-attachments/assets/c403b9e9-8fb3-428f-acf7-386098b8790d" /># Cross-site scripting
 ## Apprentice
 ### 1.Lab Reflected XSS into HTML context with nothing encoded
 
@@ -80,11 +80,30 @@ Bài lab sử dụng hàm document.write để ghi dữ liệu ra trang. Hàm do
 
 - POC
 
-1. Bắt request và xem response trả về khi search từ bất kỳ
+1. Bắt request và quan sát response trả về khi search từ bất kỳ
 
 <img width="705" height="139" alt="image" src="https://github.com/user-attachments/assets/2635c93a-107d-4680-b752-9f69ecfc0261" />
 
-2. viết payload "> để đóng chuỗi đằng trước, và nối với <script>alert(1)</script>
+2. Dùng tham số search với một giá trị đóng chuỗi rồi nối mã JavaScript
+
+"> để đóng chuỗi đằng trước, và nối với <script>alert(1)</script>
 
 <img width="1060" height="524" alt="image" src="https://github.com/user-attachments/assets/38350cf4-7f8c-4ab5-9f1b-c3d3df224a19" />
 
+### 5.DOM XSS in innerHTML sink using source location.search
+
+- Mô tả
+
+Bài lab sử dụng innerHTML, thay đổi nội dung HTML của một phần tử div, sử dụng dữ liệu từ location.search.
+
+- POC
+
+1. Bắt request và quan sát response trả về khi search từ bất kỳ
+
+<img width="640" height="143" alt="image" src="https://github.com/user-attachments/assets/a47a6783-543c-49f6-acb9-9d22e8bd8de1" />
+
+Dữ liệu từ URL (search) được đưa thẳng vào innerHTML của phần tử DOM mà không escape, nên attacker có thể gửi HTML/JS trong search thì trình duyệt sẽ thực thi
+
+2. Truyền payload <img src=a onerror=alert(1) /> trực tiếp vào tham số search
+
+<img width="1327" height="627" alt="image" src="https://github.com/user-attachments/assets/f61275dd-3a53-4d5a-ac89-d283861cd354" />

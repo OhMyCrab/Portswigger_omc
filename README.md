@@ -1,6 +1,6 @@
 # Portswigger_omc
-Mục tiêu: XSS, SQLi, Broken Auth.
+Mục tiêu: XSS, SQLi.
 Checklist:
-- [x] XSS
-- [x] SQL Injection
+- [] XSS
+- [] SQL Injection
 

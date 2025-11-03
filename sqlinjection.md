@@ -98,11 +98,11 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="1873" height="687" alt="image" src="https://github.com/user-attachments/assets/768731c5-2669-4f7b-b620-18ae0a48cda2" />
 
-### SQL injection attack, listing the database contents on non-Oracle databases
+### 5.SQL injection attack, listing the database contents on non-Oracle databases
 
 - Mô tả:
 
-Ứng dụng có chức năng đăng nhập và cơ sở dữ liệu chứa một bảng lưu trữ tên người dùng và mật khẩu. Cần xác định tên của bảng này và các cột chứa trong bảng, sau đó truy xuất nội dung của bảng để lấy tên người dùng và mật khẩu của tất cả người dùng và đăng nhập với tư cách administrator.
+Ứng dụng có chức năng đăng nhập và cơ sở dữ liệu không phải của Oracle databases chứa một bảng lưu trữ tên người dùng và mật khẩu. Cần xác định tên của bảng này và các cột chứa trong bảng, sau đó truy xuất nội dung của bảng để lấy tên người dùng và mật khẩu của tất cả người dùng và đăng nhập với tư cách administrator.
 
 - POC:
 
@@ -129,4 +129,10 @@ response không lỗi (2 cột NULL hợp lệ).
 5. Đăng nhập vào tài khoản administrator
 
 <img width="944" height="519" alt="image" src="https://github.com/user-attachments/assets/372eb8e1-af6e-4332-81c7-b705ebfd9d3b" />
+
+### 6.SQL injection attack, listing the database contents on Oracle
+
+- Mô tả:
+
+Ứng dụng có chức năng đăng nhập và cơ sở dữ liệu trên Oracle chứa một bảng lưu trữ tên người dùng và mật khẩu. Cần xác định tên của bảng này và các cột chứa trong bảng, sau đó truy xuất nội dung của bảng để lấy tên người dùng và mật khẩu của tất cả người dùng và đăng nhập với tư cách administrator.
 

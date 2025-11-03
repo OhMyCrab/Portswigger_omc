@@ -1,4 +1,4 @@
-### SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+### 1.SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 
 - Mô tả:
 
@@ -26,7 +26,7 @@ Khi nhấp vào các nút, kết quả sẽ được lọc theo danh mục:
 
 <img width="1887" height="755" alt="image" src="https://github.com/user-attachments/assets/33d8e050-e165-4d80-aef1-e41e84dc81d7" />
 
-### SQL injection vulnerability allowing login bypass
+### 2.SQL injection vulnerability allowing login bypass
 
 - Mô tả:
 
@@ -48,7 +48,7 @@ Bài lab có lỗ hổng SQL injection trong chức năng đăng nhập. Để h
 
 <img width="940" height="564" alt="image" src="https://github.com/user-attachments/assets/c8e1dd77-d988-4323-9123-796db233b7e2" />
 
-### SQL injection attack, querying the database type and version on Oracle
+### 3.SQL injection attack, querying the database type and version on Oracle
 
 - Mô tả:
 
@@ -73,3 +73,28 @@ response không lỗi (2 cột NULL hợp lệ).
 3. Send và quan sát response
 
 <img width="1853" height="739" alt="image" src="https://github.com/user-attachments/assets/951ccedc-c428-4d59-9a8b-5a166410d269" />
+
+### 4.SQL injection attack, querying the database type and version on MySQL and Microsoft
+
+- Mô tả:
+
+Yêu cầu cơ sở dữ liệu lấy chuỗi: '8.0.32-0ubuntu0.20.04.2'
+
+- POC:
+
+1. Kiểm tra số cột
+
+/filter?category=Accessories'union all select NULL,NULL-- -
+
+<img width="1668" height="615" alt="image" src="https://github.com/user-attachments/assets/a6964490-e037-4cfc-aa7f-391acdb7be38" />
+
+response không lỗi (2 cột NULL hợp lệ).
+
+2. Lấy version trên Microsoft
+
+/filter?category=Accessories'union select 'aaa',@@version-- -
+
+3. Send và quan sát response
+
+<img width="1873" height="687" alt="image" src="https://github.com/user-attachments/assets/768731c5-2669-4f7b-b620-18ae0a48cda2" />
+

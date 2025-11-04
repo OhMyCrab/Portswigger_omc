@@ -111,6 +111,8 @@ Dữ liệu từ URL (search) được đưa thẳng vào innerHTML của phần
 
 - Mô tả
 
+Tạo alert "back" document.cookie
+
 - POC
 
 1. Bắt request và quan sát response trả về từ trang feedback
@@ -168,3 +170,36 @@ Gửi một bình luận có chức năng gọi hàm cảnh báo khi tên tác g
 https: → trình duyệt gửi yêu cầu tới server và tải nội dung (an toàn hơn nếu URL chỉ là một địa chỉ).
 
 javascript: → trình duyệt không tải trang mới, nó chạy trực tiếp mã JavaScript trong ngữ cảnh trang hiện tại
+
+### 8.Reflected XSS into a JavaScript string with angle brackets HTML encoded
+
+- Mô tả
+
+Thoát khỏi chuỗi JavaScript và gọi alert.Một số cách hữu ích để thoát khỏi chuỗi ký tự là:
+
+    '-alert(1)-'
+
+';alert(1)//
+
+- POC
+
+1. gửi chuỗi ký tự bất kỳ và quan sát response trả về
+
+<img width="612" height="77" alt="image" src="https://github.com/user-attachments/assets/586904ef-27d6-4d70-a8cc-67fff2544be8" />
+
+quan sát thấy aaa đang nằm trong chuỗi, 1 số cách hữu ích để thoát khỏi chuỗi và thực thi lệnh javascript: '-alert(1)-' và ';alert(1)//
+
+2. viết payload vào ô search và quan sát kết quả trả về
+
+<img width="884" height="323" alt="image" src="https://github.com/user-attachments/assets/969c4d43-56a0-49c2-9eb9-2acb26729154" />
+
+<img width="1372" height="589" alt="image" src="https://github.com/user-attachments/assets/d571bf2b-2a40-4b0a-b04f-757e31572170" />
+
+### 9.Reflected XSS into a JavaScript string with single quote and backslash escaped
+
+- Mô tả
+
+- POC
+
+<img width="1302" height="703" alt="image" src="https://github.com/user-attachments/assets/0b9fb8a5-0bc6-479b-aa64-1b962d028dda" />
+

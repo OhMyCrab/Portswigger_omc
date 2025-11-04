@@ -1,5 +1,5 @@
 ## Apprentice
-### 1.Lab Reflected XSS into HTML context with nothing encoded
+### 1.Reflected XSS into HTML context with nothing encoded
 
 - Mô tả
 
@@ -21,7 +21,7 @@ GET /?search=a HTTP/2 → GET /?search=<code><script>alert(1)</script></code> HT
 
 <img width="932" height="561" alt="image" src="https://github.com/user-attachments/assets/e33d82b9-2cf4-4ae6-91dc-b6fe198a3f72" />
 
-### 2.Lab Stored XSS into HTML context with nothing encoded
+### 2.Stored XSS into HTML context with nothing encoded
 
 - Mô tả
 
@@ -47,7 +47,7 @@ csrf=ZJVq5Yx7wlJB38HHaBivutfzYNqXEMfk&postId=9&comment=<code><script>alert(1)</s
 
 - comment không được encoded và chứa <script> → sẽ chạy khi tải trang -> Stored XSS.
 
-### 3.Lab Reflected XSS into attribute with angle brackets HTML-encoded
+### 3.Reflected XSS into attribute with angle brackets HTML-encoded
 
 - Mô tả
 
@@ -106,3 +106,65 @@ Dữ liệu từ URL (search) được đưa thẳng vào innerHTML của phần
 2. Truyền payload `<img src=a onerror=alert(1) />` trực tiếp vào tham số search
 
 <img width="1327" height="627" alt="image" src="https://github.com/user-attachments/assets/f61275dd-3a53-4d5a-ac89-d283861cd354" />
+
+### 6.DOM XSS in jQuery anchor href attribute sink using location.search source
+
+- Mô tả
+
+- POC
+
+1. Bắt request và quan sát response trả về từ trang feedback
+
+<img width="682" height="116" alt="image" src="https://github.com/user-attachments/assets/eaca447c-a579-4fdb-a706-a2dcc4d12ba8" />
+
+Đoạn code lấy tham số returnPath từ URL hiện tại bằng window.location.search.
+
+→ https://0a7600b304bfa091800b17a1002f004a.web-security-academy.net/feedback?returnPath=/
+
+→ returnPath = /
+
+Sau đó, gán trực tiếp giá trị này vào thuộc tính href của phần tử có id="backLink".
+
+2. Truyền vào tham số returnPath payload javascript:alert(1)
+
+<img width="922" height="985" alt="image" src="https://github.com/user-attachments/assets/464326b7-120f-42af-aac7-37794ad1c693" />
+
+→ $('#backLink').attr("href", "javascript:alert(1)")
+
+3. Khi nhấn nút back đoạn mã alert(1) được thực thi
+
+<img width="971" height="967" alt="image" src="https://github.com/user-attachments/assets/b1b37f57-2c9a-4565-bab6-b5f103151eaa" />
+
+### 7.Stored XSS into anchor href attribute with double quotes HTML-encoded
+
+- Mô tả
+
+Gửi một bình luận có chức năng gọi hàm cảnh báo khi tên tác giả bình luận được nhấp vào
+
+- POC
+
+1. Post 1 comment bình thường và quan sát 
+
+<img width="799" height="619" alt="image" src="https://github.com/user-attachments/assets/420a7004-93d8-42a1-8305-3fcec5b064a7" />
+
+2. Nhấp vào tên tác giả bình luận sẽ link sang trang khác
+
+<img width="542" height="229" alt="image" src="https://github.com/user-attachments/assets/58c275d0-8fdb-4dab-8650-9cdd092f1070" />
+
+3. Khi nhập đường link Website sẽ trở thành href trong thẻ a của tên
+
+<img width="468" height="99" alt="image" src="https://github.com/user-attachments/assets/440b6a00-8e37-416c-9666-73e6e931a0d3" />
+
+Đôi khi ngữ cảnh XSS nằm trong một loại thuộc tính thẻ HTML mà bản thân nó có thể tạo ra một ngữ cảnh có thể lập trình được. Ở đây, có thể thực thi JavaScript mà không cần phải chấm dứt giá trị thuộc tính.
+
+4. Thay thế đường dẫn https://abcd → javascript:alert(1)
+
+<img width="848" height="636" alt="image" src="https://github.com/user-attachments/assets/fee5313d-8fb1-4e52-8664-a820faa05679" />
+
+5. Nhấp vào tên tác giả bình luận sẽ thực thi payload
+
+<img width="882" height="587" alt="image" src="https://github.com/user-attachments/assets/315b801e-68b6-436a-9bae-b52352bf0ea2" />
+
+https: → trình duyệt gửi yêu cầu tới server và tải nội dung (an toàn hơn nếu URL chỉ là một địa chỉ).
+
+javascript: → trình duyệt không tải trang mới, nó chạy trực tiếp mã JavaScript trong ngữ cảnh trang hiện tại

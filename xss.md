@@ -203,5 +203,5 @@ XSS xảy ra bên trong một chuỗi JavaScript với dấu ' và \ được es
 
 - POC
 
-<img width="1302" height="703" alt="image" src="https://github.com/user-attachments/assets/0b9fb8a5-0bc6-479b-aa64-1b962d028dda" />
+
 

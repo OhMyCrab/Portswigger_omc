@@ -240,3 +240,61 @@ response không lỗi (2 cột NULL hợp lệ).
 5. Đăng nhập vào tài khoản administrator
 
 <img width="981" height="417" alt="image" src="https://github.com/user-attachments/assets/31867ac1-a444-49ad-abd8-100fd739dec8" />
+
+### 11.Blind SQL injection with conditional responses
+
+- Mô tả:
+
+Ứng dụng sử dụng cookie theo dõi để phân tích và thực hiện truy vấn SQL chứa giá trị của cookie đã gửi. Kết quả của truy vấn SQL không được trả về và không có thông báo lỗi nào được hiển thị. Tuy nhiên, ứng dụng sẽ hiển thị thông báo "Welcome back!" trên trang nếu truy vấn trả về bất kỳ hàng nào. Cơ sở dữ liệu chứa một bảng khác có tên là users, với các cột có tên là username và password. Cần khai thác lỗ hổng SQL injection và đăng nhập với tư cách administrator.
+
+- POC:
+
+1. Send request và quan sát response 
+
+Khi một request chứa cookie TrackingId được xử lý, ứng dụng sẽ sử dụng truy vấn SQL để xác định xem đây có phải là người dùng đã biết hay không: SELECT TrackingId FROM TrackedUsers WHERE TrackingId = '9xehqPCRQO4oLKof'
+
+Truy vấn này dễ bị tấn công SQL injection, nhưng kết quả truy vấn không được trả về cho người dùng. Tuy nhiên, ứng dụng sẽ hoạt động khác nhau tùy thuộc vào việc truy vấn có trả về dữ liệu hay không. Nếu gửi một truy vấn được TrackingId công nhận, truy vấn sẽ trả về dữ liệu và sẽ nhận được thông báo "Welcome back!" trong response.
+
+<img width="1536" height="500" alt="image" src="https://github.com/user-attachments/assets/32f36978-c81d-4b77-abd2-78f63eef0724" />
+
+2. Send request boolean based và quan sát response
+
+<img width="1523" height="522" alt="image" src="https://github.com/user-attachments/assets/19765bb6-8ed7-41d9-962e-315eff0e6cb3" />
+
+Khi giá trị là true thì hiện thông báo "Welcome back!"
+
+<img width="1539" height="511" alt="image" src="https://github.com/user-attachments/assets/1d3dcd6d-0eb1-44fe-a151-23c4e3ba32f7" />
+
+Khi giá trị là false thì không hiện thông báo "Welcome back!"
+
+3. Thêm payload 'and substring((select password from users where username = 'administrator'),1,1) ='a'-- - sau cookie TrackingID, gửi request vào intruder, add kí tự a, payload configuration từ a->z,0->9 và start attack
+
+<img width="1389" height="453" alt="image" src="https://github.com/user-attachments/assets/adbb7528-a9eb-4e69-ba4c-7c18b55de273" />
+
+Kí tự đầu tiên của mật khẩu administrator là f
+
+4. tiếp tục với những kí tự sau
+
+<img width="849" height="168" alt="image" src="https://github.com/user-attachments/assets/68f31a47-2128-4fd6-8626-0c8fd3a57d3c" />
+
+<img width="857" height="153" alt="image" src="https://github.com/user-attachments/assets/d76793de-35ca-40fc-b3f3-50b4dc973e6a" />
+
+<img width="801" height="159" alt="image" src="https://github.com/user-attachments/assets/aed4cfd0-e8a2-4dc4-998e-e9a5c4458ceb" />
+
+...
+
+<img width="830" height="166" alt="image" src="https://github.com/user-attachments/assets/deb771db-4e97-4f3d-af26-39e0957cabb4" />
+
+<img width="800" height="165" alt="image" src="https://github.com/user-attachments/assets/8041fc60-dbfa-4795-9840-b320286c29cb" />
+
+<img width="810" height="172" alt="image" src="https://github.com/user-attachments/assets/5ffd59f5-52ac-431f-9661-19bc5fb425a9" />
+
+<img width="815" height="170" alt="image" src="https://github.com/user-attachments/assets/3d97ad68-2121-402e-ae6d-16c969d0f060" />
+
+<img width="809" height="166" alt="image" src="https://github.com/user-attachments/assets/76c2e342-f798-4fab-9b50-d9439443c7d9" />
+
+Mật khẩu của tài khoản administrator là f3tbujubrt3fjyecxrz0
+
+5. Đăng nhập vào tài khoản administrator
+
+<img width="1360" height="569" alt="image" src="https://github.com/user-attachments/assets/1416a3d6-c6c9-4ba6-969f-5a377ca78693" />

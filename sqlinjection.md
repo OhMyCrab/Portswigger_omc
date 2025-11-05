@@ -269,6 +269,8 @@ Khi giá trị là false thì không hiện thông báo "Welcome back!"
 
 3. Thêm payload 'and substring((select password from users where username = 'administrator'),1,1) ='a'-- - sau cookie TrackingID, gửi request vào intruder, add kí tự a, payload configuration từ a->z,0->9 và start attack
 
+Payload trên xét kí tự, nếu điều kiện đúng (ký tự đầu là a) thì trang sẽ phản hồi welcome back!
+
 <img width="1389" height="453" alt="image" src="https://github.com/user-attachments/assets/adbb7528-a9eb-4e69-ba4c-7c18b55de273" />
 
 Kí tự đầu tiên của mật khẩu administrator là f
@@ -298,3 +300,12 @@ Mật khẩu của tài khoản administrator là f3tbujubrt3fjyecxrz0
 5. Đăng nhập vào tài khoản administrator
 
 <img width="1360" height="569" alt="image" src="https://github.com/user-attachments/assets/1416a3d6-c6c9-4ba6-969f-5a377ca78693" />
+
+### 12.Blind SQL injection with conditional errors
+
+- Mô tả:
+
+Ứng dụng sử dụng cookie theo dõi để phân tích và thực hiện truy vấn SQL chứa giá trị của cookie đã gửi. Kết quả của truy vấn SQL không được trả về, và ứng dụng không phản hồi khác nhau tùy thuộc vào việc truy vấn có trả về hàng nào hay không. Nếu truy vấn SQL gây ra lỗi, ứng dụng sẽ trả về thông báo lỗi tùy chỉnh. Nếu gửi một truy vấn được TrackingId công nhận, truy vấn sẽ trả về dữ liệu và sẽ nhận được thông báo "Welcome back!" trong response.
+
+- POC:
+

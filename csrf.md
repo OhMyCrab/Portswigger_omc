@@ -2,7 +2,6 @@
 
 POST /my-account/change-email
 
-
 Khi người dùng gửi request thay đổi email, server không triển khai bất kỳ biện pháp bảo vệ CSRF nào, cụ thể:
 
 Không có CSRF token
@@ -15,7 +14,7 @@ Server chấp nhận mọi Content-Type, bao gồm cả text/plain (dễ khai th
 
 Điều này cho phép attacker tạo một trang độc hại chứa form tự submit để ép trình duyệt nạn nhân gửi yêu cầu đổi email mà không cần thao tác.
 
-📌 Luồng tấn công
+Luồng tấn công
 
 Kẻ tấn công:
 
@@ -29,7 +28,7 @@ Server xử lý request như thể nạn nhân tự gửi → email bị thay đ
 
 Do server không kiểm tra CSRF token hay Origin → tấn công thành công 100%.
 
-📌 PoC (Proof of Concept)
+PoC (Proof of Concept)
 1. Mở lab và đăng nhập tài khoản nạn nhân (bot)
 
 Khai thác từ tài khoản attacker trong Exploit Server.

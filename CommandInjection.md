@@ -34,3 +34,22 @@ storeId=1|whoami
 
 <img width="734" height="690" alt="image" src="https://github.com/user-attachments/assets/abf708d5-aeaf-4b2b-b6b9-b7c504b80cd8" />
 
+### 3.Blind OS command injection with output redirection
+
+- Mô tả: Ứng dụng thực thi lệnh shell chứa thông tin chi tiết do người dùng cung cấp. Đầu ra của lệnh không được trả về trong phản hồi. Tuy nhiên, bạn có thể sử dụng lệnh chuyển hướng đầu ra để ghi lại đầu ra của lệnh. Có một thư mục có thể ghi tại: /var/www/images/. Có thể chuyển hướng đầu ra từ lệnh được chèn vào một tệp trong thư mục này, sau đó truy cập đường link "https://<domain>/image?filename=<tên_file>" để truy xuất nội dung của tệp, thực hiện lệnh whoami và lấy kết quả.
+
+- POC:
+
+1. Mở trang lab trong trình duyệt: https://0a71007603fad2e980947be6007000df.web-security-academy.net/feedback và bật Burp Proxy để bắt request.
+
+<img width="850" height="663" alt="image" src="https://github.com/user-attachments/assets/d689d9b3-0e46-430c-bd0c-66f20237d697" />
+
+2. Truyền vào tham số name, subject, message đều dính Blind OS command injection, payload: "; whoami > /var/www/images/whoami.txt ;"
+
+<img width="969" height="367" alt="image" src="https://github.com/user-attachments/assets/e2e2a33e-2c27-4d2a-8c95-3c6ec3a710cc" />
+
+4. Send request trong Repeater, truy cập đường dẫn https://0ace00dd033821ea8092302200b0006f.web-security-academy.net/image?filename=whoami.txt và xem kết quả
+
+<img width="873" height="115" alt="image" src="https://github.com/user-attachments/assets/1de634e3-b2f2-466e-ac07-ebfeafba3923" />
+
+

@@ -195,13 +195,3 @@ quan sát thấy aaa đang nằm trong chuỗi, 1 số cách hữu ích để th
 
 <img width="1372" height="589" alt="image" src="https://github.com/user-attachments/assets/d571bf2b-2a40-4b0a-b04f-757e31572170" />
 
-### 9.Reflected XSS into a JavaScript string with single quote and backslash escaped
-
-- Mô tả
-
-XSS xảy ra bên trong một chuỗi JavaScript với dấu ' và \ được escaped.
-
-- POC
-
-
-

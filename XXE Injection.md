@@ -37,3 +37,32 @@
 4. Quan sát response trả về khi gửi SYSTEM entity tới http://169.254.169.254/latest/meta-data/iam/security-credentials/admin
 
 <img width="843" height="616" alt="image" src="https://github.com/user-attachments/assets/8ae57a22-8ed6-4fbb-8ec4-798101aac5bd" />
+
+### 3.Exploiting XXE via image file upload
+
+- Mô tả: Bài lab cho phép người dùng upload ảnh đại diện vào bình luận và sử dụng thư viện Apache Batik để xử lý các tệp ảnh đại diện. Để hoàn thành bài lab, tải lên hình ảnh hiển thị nội dung của tệp /etc/hostname sau khi xử lý.
+
+- POC:
+
+1. Tạo 1 file ảnh xxe.svg chứa payload xxe để in nội dung file /etc/hostname
+
+<img width="604" height="205" alt="image" src="https://github.com/user-attachments/assets/461052c0-0d79-4358-9720-b401dc8c8b3b" />
+
+2. Post comment và f12 để xem phần hình ảnh của bình luận đã gửi
+
+<img width="1377" height="753" alt="image" src="https://github.com/user-attachments/assets/ff4a347c-7c5c-4dab-bca1-f39a05e60121" />
+
+3. Truy cập đường dẫn https://0a7c008d045823a880a7089d009e00c9.web-security-academy.net/post/comment/avatars?filename=1.png để xem ảnh
+
+<img width="1016" height="663" alt="image" src="https://github.com/user-attachments/assets/c9312ad8-d70d-4ec9-b9f3-5453c49ad1a3" />
+
+Giá trị trong ảnh là 351080d9fd17
+
+4. Nhập giá trị trong ảnh vào submit solution
+
+<img width="737" height="614" alt="image" src="https://github.com/user-attachments/assets/fc490eb1-12d2-4abe-868e-b5cf13b6ce43" />
+
+5. Quan sát kết quả trả về
+
+<img width="948" height="190" alt="image" src="https://github.com/user-attachments/assets/6c3f8069-2d4a-43f8-bc21-90a9ad26fe31" />
+

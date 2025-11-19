@@ -68,7 +68,7 @@ Giá trị trong ảnh là 351080d9fd17
 
 ### 4.Exploiting XInclude to retrieve files
 
-- Mô tả: Trong bài lab này không thể thực hiện classic XXE attack, vì không kiểm soát toàn bộ tài liệu XML và do đó không thể định nghĩa hoặc sửa đổi một phần tử DOCTYPE. Tuy nhiên, có thể sử dụng XInclude. có thể thực hiện tấn công XInclude trong bất kỳ giá trị dữ liệu nào trong tài liệu XML, do đó có thể được thực hiện trong trường hợp chỉ kiểm soát một mục dữ liệu duy nhất được đưa vào tài liệu XML phía máy chủ. Để thực hiện một cuộc tấn công XInclude, cần tham chiếu đến không gian tên XInclude và cung cấp đường dẫn đến /etc/passwd.
+- Mô tả: Trong bài lab này không thể thực hiện classic XXE attack vì attacker không kiểm soát được toàn bộ tài liệu XML và do đó không thể chèn hoặc sửa đổi phần tử <!DOCTYPE>. Tuy nhiên, có thể khai thác bằng kỹ thuật XInclude, vì XInclude cho phép chèn nội dung từ file hệ thống thông qua bất kỳ giá trị dữ liệu nào được đưa vào tài liệu XML phía máy chủ. Bằng cách tham chiếu đến namespace của XInclude và chỉ định đường dẫn file, attacker có thể đọc các file nhạy cảm như /etc/passwd từ server.
 
 - POC:
 

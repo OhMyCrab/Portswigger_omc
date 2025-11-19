@@ -66,3 +66,22 @@ Giá trị trong ảnh là 351080d9fd17
 
 <img width="948" height="190" alt="image" src="https://github.com/user-attachments/assets/6c3f8069-2d4a-43f8-bc21-90a9ad26fe31" />
 
+### 4.Exploiting XInclude to retrieve files
+
+- Mô tả: Trong bài lab này không thể thực hiện classic XXE attack, vì không kiểm soát toàn bộ tài liệu XML và do đó không thể định nghĩa hoặc sửa đổi một phần tử DOCTYPE. Tuy nhiên, có thể sử dụng XInclude. có thể thực hiện tấn công XInclude trong bất kỳ giá trị dữ liệu nào trong tài liệu XML, do đó có thể được thực hiện trong trường hợp chỉ kiểm soát một mục dữ liệu duy nhất được đưa vào tài liệu XML phía máy chủ. Để thực hiện một cuộc tấn công XInclude, cần tham chiếu đến không gian tên XInclude và cung cấp đường dẫn đến /etc/passwd.
+
+- POC:
+
+1. Mở trang lab trong trình duyệt: https://0aa70076036f0be7807930c900e9007e.web-security-academy.net/product?productId=2 và bật Burp Proxy để bắt request.
+
+<img width="705" height="426" alt="image" src="https://github.com/user-attachments/assets/d18b39c7-fcef-4074-9aff-962265d14df6" />
+
+2. Payload để đọc file /etc/password:
+
+````
+<foo xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include parse="text" href="file:///etc/passwd"/></foo>
+````
+
+<img width="1152" height="657" alt="image" src="https://github.com/user-attachments/assets/8ad86059-7580-4661-920d-e6ae32f9f2d1" />
+

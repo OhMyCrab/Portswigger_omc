@@ -44,4 +44,25 @@
 
 <img width="1297" height="473" alt="image" src="https://github.com/user-attachments/assets/66ee6b14-053f-4db6-a0d7-82859cfa5727" />
 
-3. 
+### 3.SSRF with blacklist-based input filter
+
+- Mô tả:
+
+- POC:
+
+1. Mở lab https://0af9009f0471efa1813821bd00810014.web-security-academy.net/
+
+2. Bắt request và send to repeater
+
+<img width="754" height="392" alt="image" src="https://github.com/user-attachments/assets/746ede91-cdc0-4c9b-9ac3-5be872c0150d" />
+
+3. encode url admin 2 lần và quan sát response trả về
+
+<img width="1267" height="402" alt="image" src="https://github.com/user-attachments/assets/ec673c64-27e9-4b21-bb5b-62a1861f1c54" />
+
+4. thêm /delete?username=carlos vào http://127.1/%2561%2564%256d%2569%256e và quan sát response trả về
+
+<img width="1463" height="581" alt="image" src="https://github.com/user-attachments/assets/f1db1ec4-44d6-433f-85d5-ae1538893ce0" />
+
+
+

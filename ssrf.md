@@ -25,3 +25,23 @@
 5. Bắt request và thay url thành http://localhost/admin/delete?username=carlos
 
 <img width="999" height="371" alt="image" src="https://github.com/user-attachments/assets/93578708-976c-454b-8ad3-2c8388007828" />
+
+### 2.Basic SSRF against another back-end system
+
+- Mô tả: Bài lab có tính năng kiểm tra kho hàng, lấy dữ liệu từ một hệ thống nội bộ. Để giải bài lab cần sử dụng chức năng kiểm tra kho để quét phạm vi nội bộ 192.168.0.X, tìm giao diện quản trị trên cổng 8080, sau đó sử dụng nó để xóa người dùng carlos.
+
+- POC:
+
+1. Mở lab https://0aae005a03ffc78f83966967000a00b9.web-security-academy.net
+
+2. Bắt request chuyển vào intruder
+
+<img width="1152" height="463" alt="image" src="https://github.com/user-attachments/assets/a0e72d84-9d77-47b8-aa4a-d6d7e07e69bf" />
+
+<img width="822" height="577" alt="image" src="https://github.com/user-attachments/assets/637e2be1-8621-4427-b2b2-1fb029ba7a4d" />
+
+3. Kết thúc intruder attack và quan sát response trả về
+
+<img width="1297" height="473" alt="image" src="https://github.com/user-attachments/assets/66ee6b14-053f-4db6-a0d7-82859cfa5727" />
+
+3. 

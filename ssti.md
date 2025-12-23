@@ -20,3 +20,10 @@
 
 <img width="1508" height="465" alt="image" src="https://github.com/user-attachments/assets/6f93d70a-1d85-4a10-b670-a0d6edb07f44" />
 
+### 2.Basic server-side template injection (code context)
+
+- Mô tả: Bài lab này dễ bị tấn công chèn mẫu phía máy chủ do cách sử dụng mẫu Tornado không an toàn. Để giải quyết bài thực hành, hãy xóa tệp morale.txt khỏi thư mục chính của Carlos.
+
+- POC:
+
+1. 

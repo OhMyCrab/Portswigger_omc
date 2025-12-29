@@ -46,7 +46,7 @@
 
 ### 3.SSRF with blacklist-based input filter
 
-- Mô tả:
+- Mô tả: Bài lab này có tính năng kiểm tra kho hàng, lấy dữ liệu từ một hệ thống nội bộ. Để giải quyết bài cần thay đổi URL kiểm tra kho để truy cập giao diện quản trị http://localhost/adminvà xóa người dùng carlos.
 
 - POC:
 

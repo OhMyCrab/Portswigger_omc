@@ -47,7 +47,7 @@ b:1 → true
 
 ### 2.Modifying serialized data types
 
-- Mô tả:
+- Mô tả: Bài lab sử dụng cơ chế phiên dựa trên tuần tự hóa và do đó dễ bị tấn công vượt qua xác thực. Để giải cần chỉnh sửa đối tượng được tuần tự hóa trong cookie phiên để truy cập tài khoản quản trị viên. Sau đó, xóa người dùng carlos.
 
 - POC:
 

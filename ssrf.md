@@ -28,7 +28,7 @@
 
 ### 2.Basic SSRF against another back-end system
 
-- Mô tả: Bài lab có tính năng kiểm tra kho hàng, lấy dữ liệu từ một hệ thống nội bộ. Để giải bài lab cần sử dụng chức năng kiểm tra kho để quét phạm vi nội bộ 192.168.0.X, tìm giao diện quản trị trên cổng 8080, sau đó sử dụng nó để xóa người dùng carlos.
+- Mô tả: Bài lab có tính năng kiểm tra kho hàng, lấy dữ liệu từ một hệ thống nội bộ. Để giải bài lab cần sử dụng chức năng kiểm tra kho để quét phạm vi nội bộ 192.168.0.X, tìm giao diện quản trị trên cổng 8080, sử dụng để xóa người dùng carlos.
 
 - POC:
 

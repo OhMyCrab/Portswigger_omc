@@ -1,6 +1,6 @@
 ### 1.Basic server-side template injection
 
-- Mô tả: Bài lab dễ bị tấn công bằng cách chèn mẫu phía máy chủ do việc xây dựng mẫu ERB không an toàn. Để giải bài lab phải xóa tệp morale.txt khỏi thư mục chính của Carlos. Ứng dụng sử dụng ERB template để render nội dung hiển thị cho người dùng nhưng không lọc đầu vào, khiến dữ liệu do người dùng kiểm soát được xử lý như mã Ruby. Cú pháp <%= %> trong ERB cho phép thực thi biểu thức Ruby trong quá trình render template.
+- Mô tả: Bài lab dễ bị tấn công bằng cách chèn mẫu phía máy chủ do việc xây dựng mẫu ERB không an toàn. Để giải bài lab phải xóa tệp morale.txt khỏi thư mục chính của Carlos. Ứng dụng sử dụng ERB template để render nội dung cho người dùng nhưng không lọc đầu vào, khiến dữ liệu do người dùng kiểm soát được xử lý như mã Ruby. Cú pháp <%= %> trong ERB cho phép thực thi biểu thức Ruby trong quá trình render template.
 
 - POC:
 
